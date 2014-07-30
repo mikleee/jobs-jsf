@@ -10,6 +10,7 @@ public class Employee implements PersistEntity {
 
     private static final long serialVersionUID = 1L;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
