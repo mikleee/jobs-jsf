@@ -2,6 +2,7 @@ package com.aimprosoft.jobs.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "department")
@@ -21,6 +22,8 @@ public class Department implements PersistEntity {
     @Column(name = "location")
     private String location;
 
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    List<Employee> employeeList;
 
     public Integer getId() {
         return id;
@@ -46,6 +49,13 @@ public class Department implements PersistEntity {
         this.location = location;
     }
 
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
 
     @Override
     public String toString() {

@@ -23,4 +23,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         return (List<Department>) departmentDAO.findAll();
     }
 
+
+    @Override
+    public Department findOne(Integer id) {
+        return departmentDAO.findOne(id);
+    }
+
 }

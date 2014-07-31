@@ -2,21 +2,19 @@ package com.aimprosoft.jobs.controller;
 
 import com.aimprosoft.jobs.service.DepartmentService;
 import com.aimprosoft.jobs.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.aimprosoft.jobs.service.impl.DepartmentServiceImpl;
+import com.aimprosoft.jobs.service.impl.EmployeeServiceImpl;
+import com.aimprosoft.jobs.utils.SpringUtils;
 
 import java.io.Serializable;
 
 /**
  * @author Mikhail Tkachenko
  */
-@Component
 public class BaseManagedBean implements Serializable {
 
-    @Autowired
-    protected DepartmentService departmentService;
+    protected DepartmentService departmentService = SpringUtils.getBean(DepartmentServiceImpl.class);
 
-    @Autowired
-    protected EmployeeService employeeService;
+    protected EmployeeService employeeService = SpringUtils.getBean(EmployeeServiceImpl.class);
 
 }

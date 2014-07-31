@@ -12,9 +12,7 @@
 
     <!--config params-->
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <jpa:repositories base-package="com.aimprosoft.jobs.dao"/>
+    <jpa:repositories base-package="com.aimprosoft.jobs.dao" transaction-manager-ref="transactionManager"/>
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
@@ -23,17 +21,19 @@
 
     <!--entity manager-->
 
-    <bean id="entityManager" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="entityManagerFactory"/>
+    <bean id="emFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="persistence-config"/>
     </bean>
 
 
     <!--transaction manager-->
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManager"/>
+        <property name="entityManagerFactory" ref="emFactory"/>
+        <property name="persistenceUnitName" value="persistence-config"/>
     </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
 </beans>

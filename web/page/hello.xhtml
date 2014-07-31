@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ice="http://www.icesoft.com/icefaces/component">
-<f:view>
-    <ice:form>
-        <h:outputLabel value="a" for="a"/>
-        <h:inputText id="a" value="#{hello.a}"/>
-        <h:commandButton value="a" action="#{hello.go}"/>
-    </ice:form>
-</f:view>
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+    <h:form>
+
+        <h:panelGroup id="depListSection">
+
+            <h:panelGroup>
+                <h:outputLabel value="Department List" for="depList"/>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <h:selectOneMenu id="depList">
+                    <f:selectItem itemValue="0" itemLabel="select deprtmant"/>
+                    <f:selectItems value="#{departmentList.departmentList}"/>
+                    <f:ajax render="singleDepSection" listener="#{singleDepartment.handleEvent}"/>
+                </h:selectOneMenu>
+            </h:panelGroup>
+
+        </h:panelGroup>
+
+
+        <h:panelGroup id="singleDepSection">
+
+            <h:panelGroup rendered="#{singleDepartment.singleDepartment ne null}">
+
+                <h:inputHidden id="depId" value="#{singleDepartment.singleDepartment.id}"/>
+
+                <h:panelGrid id="singleDep" columns="2">
+
+                    <f:facet name="header">
+                        <h:outputText value="Department"/>
+                    </f:facet>
+
+                    <h:outputLabel for="depName" value="Name"/>
+                    <h:inputText id="depName" value="#{singleDepartment.singleDepartment.name}"/>
+
+                    <h:outputLabel for="depLocation" value="Location"/>
+                    <h:inputText id="depLocation" value="#{singleDepartment.singleDepartment.location}"/>
+
+                    <h:panelGroup>
+                        <h:outputLabel value="Employee List" for="empList"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <h:selectOneMenu id="empList">
+                            <f:selectItem itemValue="0" itemLabel="select employee"/>
+                            <f:selectItems value="#{singleDepartment.employees}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+
+                    <f:facet name="footer">
+                        footer
+                    </f:facet>
+
+                </h:panelGrid>
+
+            </h:panelGroup>
+
+        </h:panelGroup>
+
+    </h:form>
+
+</h:body>
+
 </html>
