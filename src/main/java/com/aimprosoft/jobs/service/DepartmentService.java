@@ -12,4 +12,8 @@ public interface DepartmentService {
     List<Department> findAll();
 
     Department findOne(Integer id);
+
+    Department save(Department department);
+
+    void delete(Integer id);
 }

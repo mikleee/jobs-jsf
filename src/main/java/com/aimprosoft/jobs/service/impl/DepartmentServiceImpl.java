@@ -6,6 +6,7 @@ import com.aimprosoft.jobs.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,7 +21,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> findAll() {
-        return (List<Department>) departmentDAO.findAll();
+        List<Department> result = (List<Department>) departmentDAO.findAll();
+        Collections.sort(result);
+        return result;
     }
 
 
@@ -28,5 +31,18 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department findOne(Integer id) {
         return departmentDAO.findOne(id);
     }
+
+
+    @Override
+    public Department save(Department department) {
+        return departmentDAO.save(department);
+    }
+
+
+    @Override
+    public void delete(Integer id) {
+        departmentDAO.delete(id);
+    }
+
 
 }

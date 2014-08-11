@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "department")
-public class Department implements PersistEntity {
+public class Department implements PersistEntity, Comparable<Department> {
 
     private static final long serialVersionUID = 1L;
 
@@ -81,5 +81,20 @@ public class Department implements PersistEntity {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+
+    @Override
+    public int compareTo(Department anotherDepartment) {
+        return name.compareTo(anotherDepartment.getName());
+    }
+
+    public Department() {
+    }
+
+    public Department(Integer id, String name, String location) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
     }
 }

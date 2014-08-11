@@ -11,18 +11,30 @@
 
     <h:form>
 
-        <h:panelGroup id="depListSection">
+        <h:panelGroup id="depListSection" style="display: inline-flex">
 
-            <h:panelGroup>
-                <h:outputLabel value="Department List" for="depList"/>
+            <h:panelGroup style="display: inline-flex">
+
+                <h:panelGroup>
+                    <h:outputLabel value="Department List" for="depList"/>
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <h:selectOneMenu id="depList" style="width: 200px">
+                        <f:selectItem itemValue="0" itemLabel="select deprtmant"/>
+                        <f:selectItems value="#{departmentList.departmentList}"/>
+                        <f:ajax render="singleDepSection" listener="#{singleDepartment.showDepartmentInfo}"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
+
             </h:panelGroup>
 
             <h:panelGroup>
-                <h:selectOneMenu id="depList">
-                    <f:selectItem itemValue="0" itemLabel="select deprtmant"/>
-                    <f:selectItems value="#{departmentList.departmentList}"/>
-                    <f:ajax render="singleDepSection" listener="#{singleDepartment.handleEvent}"/>
-                </h:selectOneMenu>
+
+                <h:commandButton id="addDep" value="Add Department">
+                    <f:ajax render="singleDepSection" listener="#{singleDepartment.showAddForm}"/>
+                </h:commandButton>
+
             </h:panelGroup>
 
         </h:panelGroup>
@@ -41,24 +53,43 @@
                     </f:facet>
 
                     <h:outputLabel for="depName" value="Name"/>
-                    <h:inputText id="depName" value="#{singleDepartment.singleDepartment.name}"/>
+                    <h:inputText id="depName" value="#{singleDepartment.singleDepartment.name}" required="true"/>
 
                     <h:outputLabel for="depLocation" value="Location"/>
-                    <h:inputText id="depLocation" value="#{singleDepartment.singleDepartment.location}"/>
+                    <h:inputText id="depLocation" value="#{singleDepartment.singleDepartment.location}"
+                                 required="true"/>
 
-                    <h:panelGroup>
-                        <h:outputLabel value="Employee List" for="empList"/>
+                    <h:panelGroup rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
+                    <h:outputLabel value="Employee List" for="empList"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
-                        <h:selectOneMenu id="empList">
-                            <f:selectItem itemValue="0" itemLabel="select employee"/>
+                        <h:selectOneMenu id="empList"
+                                         rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
+                        <f:selectItem itemValue="0" itemLabel="select employee"/>
                             <f:selectItems value="#{singleDepartment.employees}"/>
                         </h:selectOneMenu>
                     </h:panelGroup>
 
                     <f:facet name="footer">
-                        footer
+                        <h:panelGroup>
+                            <h:panelGroup>
+                                <h:commandButton id="saveDep" value="Save Department">
+                                    <f:ajax render="singleDepSection depList" execute="@form"
+                                            listener="#{singleDepartment.saveDepartment(
+                                            singleDepartment.singleDepartment.id,
+                                            singleDepartment.singleDepartment.name,
+                                            singleDepartment.singleDepartment.location)}"/>
+                                </h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{singleDepartment.singleDepartment.id ne null}">
+                                <h:commandButton id="delDep" value="Delete Department">
+                                    <f:ajax render="singleDepSection depList" execute="@form"
+                                            listener="#{singleDepartment.deleteDepartment(
+                                            singleDepartment.singleDepartment.id)}"/>
+                                </h:commandButton>
+                            </h:panelGroup>
+                        </h:panelGroup>
                     </f:facet>
 
                 </h:panelGrid>
