@@ -46,9 +46,10 @@ public class SingleDepartment extends BaseManagedBean {
 
 
     @Transactional
-    public void showDepartmentInfo(AjaxBehaviorEvent event) {
+    public void showDepartmentInfo(AjaxBehaviorEvent event) throws InterruptedException {
         Object id = ((javax.faces.component.html.HtmlSelectOneMenu) event.getSource()).getValue();
         singleDepartment = departmentService.findOne(Integer.valueOf((String) id));
+        singleDepartment.getEmployeeList().size();
     }
 
 

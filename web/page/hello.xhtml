@@ -60,13 +60,13 @@
                                  required="true"/>
 
                     <h:panelGroup rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
-                    <h:outputLabel value="Employee List" for="empList"/>
+                        <h:outputLabel value="Employee List" for="empList"/>
                     </h:panelGroup>
 
                     <h:panelGroup>
                         <h:selectOneMenu id="empList"
                                          rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
-                        <f:selectItem itemValue="0" itemLabel="select employee"/>
+                            <f:selectItem itemValue="0" itemLabel="select employee"/>
                             <f:selectItems value="#{singleDepartment.employees}"/>
                         </h:selectOneMenu>
                     </h:panelGroup>

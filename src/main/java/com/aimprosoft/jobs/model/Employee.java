@@ -2,7 +2,7 @@ package com.aimprosoft.jobs.model;
 
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @javax.persistence.Entity
 @Table(name = "employee")
