@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:panelGroup id="singleEmpSection">
+
+        <h:panelGrid id="singleEmp" columns="2" rendered="#{singleEmployee.singleEmployee ne null}">
+
+            <f:facet name="header">
+                <h:outputText value="Employee"/>
+            </f:facet>
+
+            <h:outputLabel for="empName" value="Name"/>
+            <h:inputText id="empName" value="#{singleEmployee.singleEmployee.name}"/>
+
+            <h:outputLabel for="depSalary" value="Salary"/>
+            <h:inputText id="depSalary" value="#{singleEmployee.singleEmployee.salary}"
+                         required="true"/>
+
+            <h:outputLabel for="empEmail" value="Email"/>
+            <h:inputText id="empEmail" value="#{singleEmployee.singleEmployee.email}"/>
+
+            <h:outputLabel for="empBirth" value="Birth"/>
+            <h:inputText id="empBirth" value="#{singleEmployee.singleEmployee.birth}"/>
+
+
+            <!--<f:facet name="footer">
+                <h:panelGroup>
+                    <h:panelGroup>
+                        <h:commandButton id="saveDep" value="Save Department">
+                            <f:ajax render="singleDepSection depList" execute="@form"
+                                    listener="#{singleDepartment.saveDepartment(
+                                singleDepartment.singleDepartment.id,
+                                singleDepartment.singleDepartment.name,
+                                singleDepartment.singleDepartment.location)}"/>
+                        </h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{singleDepartment.singleDepartment.id ne null}">
+                        <h:commandButton id="delDep" value="Delete Department">
+                            <f:ajax render="singleDepSection depList" execute="@form"
+                                    listener="#{singleDepartment.deleteDepartment(
+                                singleDepartment.singleDepartment.id)}"/>
+                        </h:commandButton>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:facet>-->
+
+        </h:panelGrid>
+
+    </h:panelGroup>
+
+</ui:composition>

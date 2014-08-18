@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <h:panelGroup id="currentDep" rendered="#{singleDepartment.singleDepartment ne null}">
+
+        <h:inputHidden id="depId" value="#{singleDepartment.singleDepartment.id}"/>
+
+        <h:panelGrid id="singleDep" columns="2">
+
+            <f:facet name="header">
+                <h:outputText value="Department"/>
+            </f:facet>
+
+            <h:outputLabel for="depName" value="Name"/>
+            <h:inputText id="depName" value="#{singleDepartment.singleDepartment.name}" required="true"/>
+
+            <h:outputLabel for="depLocation" value="Location"/>
+            <h:inputText id="depLocation" value="#{singleDepartment.singleDepartment.location}"
+                         required="true"/>
+
+            <h:panelGroup rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
+                <h:outputLabel value="Employee List" for="empList"/>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
+                <h:selectOneMenu id="empList">
+                    <f:selectItem itemValue="0" itemLabel="select employee"/>
+                    <f:selectItems value="#{singleDepartment.employees}"/>
+                    <f:ajax render="singleEmpSection" listener="#{singleEmployee.showEmployeeInfo}"/>
+                </h:selectOneMenu>
+            </h:panelGroup>
+
+            <f:facet name="footer">
+                <h:panelGroup>
+                    <h:panelGroup>
+                        <h:commandButton id="saveDep" value="Save Department">
+                            <f:ajax render="singleDepSection depListSection" execute="@form"
+                                    listener="#{singleDepartment.saveDepartment(
+                                            singleDepartment.singleDepartment.id,
+                                            singleDepartment.singleDepartment.name,
+                                            singleDepartment.singleDepartment.location)}"/>
+                        </h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{singleDepartment.singleDepartment.id ne null}">
+                        <h:commandButton id="delDep" value="Delete Department">
+                            <f:ajax render="singleDepSection depList" execute="@form"
+                                    listener="#{singleDepartment.deleteDepartment(
+                                            singleDepartment.singleDepartment.id)}"/>
+                        </h:commandButton>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:facet>
+
+        </h:panelGrid>
+
+    </h:panelGroup>
+
+</ui:composition>
