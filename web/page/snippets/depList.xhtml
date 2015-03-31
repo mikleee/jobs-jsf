@@ -5,32 +5,22 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
     <h:panelGroup id="depListSection" style="display: inline-flex">
-
         <h:panelGroup>
             <h:outputLabel value="Department List" for="depList"/>
         </h:panelGroup>
-
         <h:panelGroup>
             <h:selectOneMenu id="depList" style="width: 200px">
                 <f:selectItem itemValue="0" itemLabel="select deprtmant"/>
                 <f:selectItems value="#{departmentList.departmentList}"/>
                 <f:ajax render="singleDepSection" listener="#{singleDepartment.showDepartmentInfo}"/>
-                <!--<f:ajax render="singleEmpSection" listener="#{singleDepartment.showDepartmentInfo}"/>-->
-                <f:param listener="#{singleDepartment.showDepartmentInfo}"/>
             </h:selectOneMenu>
         </h:panelGroup>
-
     </h:panelGroup>
-
     <h:panelGroup>
-
         <h:commandButton id="addDep" value="Add Department">
             <f:ajax render="singleDepSection" listener="#{singleDepartment.showAddForm}"/>
         </h:commandButton>
-
     </h:panelGroup>
-
 
 </ui:composition>

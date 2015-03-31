@@ -17,7 +17,6 @@ import java.util.List;
  */
 @ManagedBean
 @SessionScoped
-@Component
 public class SingleDepartment extends BaseManagedBean {
 
     private Department singleDepartment;
@@ -27,11 +26,9 @@ public class SingleDepartment extends BaseManagedBean {
         return singleDepartment;
     }
 
-
     public void setSingleDepartment(Department singleDepartment) {
         this.singleDepartment = singleDepartment;
     }
-
 
     public List<SelectItem> getEmployees() {
         List<SelectItem> result = new ArrayList<>();
@@ -45,24 +42,20 @@ public class SingleDepartment extends BaseManagedBean {
     }
 
 
-    @Transactional
     public void showDepartmentInfo(AjaxBehaviorEvent event) {
         Object id = ((javax.faces.component.html.HtmlSelectOneMenu) event.getSource()).getValue();
         singleDepartment = departmentService.findOne(Integer.valueOf((String) id));
         singleDepartment.getEmployeeList().size();
     }
 
-
     public void showAddForm(AjaxBehaviorEvent event) {
         singleDepartment = new Department();
     }
-
 
     public void saveDepartment(Integer id, String name, String location) {
         Department department = new Department(id == 0 ? null : id, name, location);
         singleDepartment = departmentService.save(department);
     }
-
 
     public void deleteDepartment(Integer id) {
         singleDepartment = null;

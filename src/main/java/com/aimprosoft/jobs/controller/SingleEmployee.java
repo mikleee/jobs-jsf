@@ -12,7 +12,6 @@ import javax.faces.event.AjaxBehaviorEvent;
  */
 @ManagedBean
 @SessionScoped
-@Component
 public class SingleEmployee extends BaseManagedBean {
 
     private Employee singleEmployee;

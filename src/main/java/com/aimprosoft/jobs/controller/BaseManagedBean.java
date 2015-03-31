@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class BaseManagedBean implements Serializable {
 
     protected DepartmentService departmentService = SpringUtils.getBean(DepartmentServiceImpl.class);
-
     protected EmployeeService employeeService = SpringUtils.getBean(EmployeeServiceImpl.class);
 
 }

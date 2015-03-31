@@ -20,8 +20,7 @@
             <h:inputText id="depName" value="#{singleDepartment.singleDepartment.name}" required="true"/>
 
             <h:outputLabel for="depLocation" value="Location"/>
-            <h:inputText id="depLocation" value="#{singleDepartment.singleDepartment.location}"
-                         required="true"/>
+            <h:inputText id="depLocation" value="#{singleDepartment.singleDepartment.location}" required="true"/>
 
             <h:panelGroup rendered="#{singleDepartment.singleDepartment.employeeList ne null}">
                 <h:outputLabel value="Employee List" for="empList"/>
