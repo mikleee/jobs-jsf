@@ -4,7 +4,6 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets">
-
     <h:panelGroup id="depListSection" style="display: inline-flex">
         <h:panelGroup>
             <h:outputLabel value="Department List" for="depList"/>
@@ -22,5 +21,13 @@
             <f:ajax render="singleDepSection" listener="#{singleDepartment.showAddForm}"/>
         </h:commandButton>
     </h:panelGroup>
+    <h:panelGroup>
+        <h:selectOneListbox id="depList2" size="10" style="width: 200px">
+            <f:selectItem itemValue="0" itemLabel="select deprtmant"/>
+            <f:selectItems value="#{departmentList.departmentList}"/>
+            <f:ajax render="r" event="dblclick" listener="#{singleDepartment.makeRandom}"/>
+        </h:selectOneListbox>
 
+        <h:outputText id="r" value="#{singleDepartment.r}"/>
+    </h:panelGroup>
 </ui:composition>

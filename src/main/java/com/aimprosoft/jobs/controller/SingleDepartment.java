@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.ValueHolder;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import java.util.ArrayList;
@@ -41,6 +42,16 @@ public class SingleDepartment extends BaseManagedBean {
         return result;
     }
 
+    private String r;
+
+    public String getR() {
+        return r;
+    }
+
+    public void makeRandom(AjaxBehaviorEvent event) {
+        ValueHolder source = (ValueHolder) event.getSource();
+        r = (String) source.getValue();
+    }
 
     public void showDepartmentInfo(AjaxBehaviorEvent event) {
         Object id = ((javax.faces.component.html.HtmlSelectOneMenu) event.getSource()).getValue();
